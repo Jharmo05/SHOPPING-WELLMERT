@@ -55,6 +55,16 @@ El diseño inicial y los wireframes de la interfaz se realizaron en **Canva** pa
 * **Carrito de Compras Accesible:** El carrito se implementó como una barra lateral que se desliza desde la derecha. Este patrón es ideal para la usabilidad, ya que no saca al usuario de la página de compras y funciona de manera excelente tanto en escritorio como en dispositivos móviles. Se puede cerrar de tres maneras intuitivas: con el botón 'X', haciendo clic en el fondo sombreado (overlay) o presionando de nuevo el ícono del carrito.
 * **Diseño Responsivo (Mobile-First):** La interfaz está diseñada para ser completamente funcional en dispositivos móviles. La cuadrícula de productos se adapta automáticamente al ancho de la pantalla, y los elementos de navegación se reorganizan para optimizar el espacio en pantallas pequeñas.
 
+## 🗂️ Estructura del Proyecto
+
+El repositorio está organizado de la siguiente manera para mantener una separación clara de responsabilidades:
+/
+|-- 📄 index.html    # Contiene la estructura principal y el esqueleto de la página web (DOM).
+|-- 🎨 style.css     # Define todos los estilos, el diseño responsivo y la apariencia visual.
+|-- ⚙️ main.js       # Contiene toda la lógica de la aplicación: consumo de API, manipulación
+|                   # del DOM, gestión del carrito, filtros y persistencia de datos.
+|-- README.md       # La documentación que estás leyendo.
+
 ### 📊 Estructura de Datos
 
 La lógica de la aplicación se gestiona con dos estructuras de datos principales en JavaScript:
