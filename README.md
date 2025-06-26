@@ -65,7 +65,6 @@ El repositorio está organizado de la siguiente manera para mantener una separac
 |                   # del DOM, gestión del carrito, filtros y persistencia de datos.
 |-- README.md       # La documentación que estás leyendo.
 
-```markdown
 ## 🔧 Tecnologías Utilizadas
 
 Este proyecto fue construido utilizando tecnologías web estándar del lado del cliente, sin depender de frameworks o librerías externas para la lógica principal.
