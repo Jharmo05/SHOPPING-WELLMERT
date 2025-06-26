@@ -242,3 +242,123 @@ body {
 .cart-sidebar.is-visible {
     transform: translateX(0);
 }
+
+
+.cart-sidebar h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#close-cart-btn {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--secondary-text);
+    padding: 0;
+    line-height: 1;
+}
+
+.cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+    font-size: 0.9rem;
+}
+
+.cart-item-info p {
+    margin: 0;
+}
+
+.cart-item-info p:first-child {
+    font-weight: 600;
+}
+
+.cart-item-actions button {
+    background: none;
+    border: none;
+    color: var(--secondary-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.cart-item-actions button:hover {
+    color: #e74c3c;
+}
+
+.cart-total {
+    border-top: 2px solid var(--border-color);
+    padding-top: 20px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.cart-total h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+#clear-cart-button {
+    background-color: transparent;
+    color: var(--walmart-blue);
+    border: 2px solid var(--walmart-blue);
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#clear-cart-button:hover {
+    background-color: var(--walmart-blue);
+    color: white;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.walmart-img {
+    width: 40px;
+}
