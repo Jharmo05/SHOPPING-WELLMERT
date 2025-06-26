@@ -105,3 +105,102 @@ document.addEventListener('DOMContentLoaded', () => {
         
         renderizarProductos(productosFiltrados);
     };
+
+    
+    const agregarAlCarrito = (idProducto) => {
+        if (carrito[idProducto]) {
+            carrito[idProducto].quantity++;
+        } else {
+            const producto = todosLosProductos.find(p => p.id === idProducto);
+            if(producto) {
+                carrito[idProducto] = { ...producto, quantity: 1 };
+            }
+        }
+        actualizarCarrito();
+    };
+
+    const eliminarDelCarrito = (idProducto) => {
+        if (carrito[idProducto]) {
+            delete carrito[idProducto];
+            actualizarCarrito();
+        }
+    };
+
+    const vaciarCarrito = () => {
+        carrito = {};
+        actualizarCarrito();
+    };
+
+    const actualizarCarrito = () => {
+        renderizarItemsCarrito();
+        calcularTotalCarrito();
+        guardarCarrito();
+    };
+    
+    const renderizarItemsCarrito = () => {
+        contenedorItemsCarrito.innerHTML = '';
+        if (Object.keys(carrito).length === 0) {
+            contenedorItemsCarrito.innerHTML = '<p>El carrito está vacío.</p>';
+            return;
+        }
+
+        Object.values(carrito).forEach(item => {
+            const itemCarrito = document.createElement('div');
+            itemCarrito.className = 'cart-item';
+            itemCarrito.innerHTML = `
+                <img src="${item.image}" alt="${item.title}">
+                <div class="cart-item-info">
+                    <p>${item.title}</p>
+                    <p>Cant: ${item.quantity} x $${item.price.toFixed(2)}</p>
+                </div>
+                <div class="cart-item-actions">
+                    <button class="remove-from-cart" data-id="${item.id}">&times;</button>
+                </div>
+            `;
+            contenedorItemsCarrito.appendChild(itemCarrito);
+        });
+    };
+
+    const calcularTotalCarrito = () => {
+        const total = Object.values(carrito).reduce((suma, item) => suma + (item.price * item.quantity), 0);
+        precioTotalCarrito.textContent = `$${total.toFixed(2)}`;
+    };
+
+    const guardarCarrito = () => {
+        localStorage.setItem('shoppingCart', JSON.stringify(carrito));
+    };
+
+    const cargarCarrito = () => {
+        const carritoGuardado = localStorage.getItem('shoppingCart');
+        if (carritoGuardado) {
+            carrito = JSON.parse(carritoGuardado);
+            actualizarCarrito();
+        }
+    };
+
+    filtroCategoria.addEventListener('change', aplicarFiltrosYOrden);
+    ordenamiento.addEventListener('change', aplicarFiltrosYOrden);
+    campoBusqueda.addEventListener('input', aplicarFiltrosYOrden);
+    
+    botonCarrito.addEventListener('click', toggleVisibilidadCarrito);
+    botonCerrarCarrito.addEventListener('click', toggleVisibilidadCarrito);
+    superposicion.addEventListener('click', toggleVisibilidadCarrito);
+
+    cuadriculaProductos.addEventListener('click', (e) => {
+        if (e.target.matches('.product-card__button')) {
+            const id = Number(e.target.dataset.id);
+            agregarAlCarrito(id);
+        }
+    });
+
+    contenedorItemsCarrito.addEventListener('click', (e) => {
+        if (e.target.matches('.remove-from-cart')) {
+            const id = Number(e.target.dataset.id);
+            eliminarDelCarrito(id);
+        }
+    });
+
+    botonVaciarCarrito.addEventListener('click', vaciarCarrito);
+
+    obtenerProductos();
+});
