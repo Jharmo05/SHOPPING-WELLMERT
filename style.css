@@ -362,3 +362,45 @@ body {
 .walmart-img {
     width: 40px;
 }
+
+@media (max-width: 1024px) {
+    .nav-button, .nav-icon-button span {
+        display: none;
+    }
+    .search-container {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .nav-left {
+        order: 1;
+    }
+    .nav-right {
+        order: 2;
+    }
+    .search-container {
+        order: 3;
+        width: 100%;
+        max-width: none;
+        margin-top: 10px;
+    }
+    .filters-bar {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .walmart-logo h1 {
+        display: none;
+    }
+    .nav-icon-button { 
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-icon-button span {
+        display: inline;
+    }
+}
