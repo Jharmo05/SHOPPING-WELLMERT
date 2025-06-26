@@ -29,13 +29,13 @@ Para ejecutar este proyecto en tu máquina local, sigue estos sencillos pasos:
 *(Aquí puedes agregar tus capturas de pantalla. Sube las imágenes a tu repositorio y enlaza a ellas)*
 
 #### Vista de Escritorio
-![Vista de Escritorio](ruta/a/tu/captura-de-escritorio.png)
+![Vista de Escritorio](./img/ESCRITORIO_PAGINA.png)
 
 #### Vista Móvil y Responsiva
-![Vista Móvil](ruta/a/tu/captura-movil.png)
+![Vista Móvil](./img/VISTA_MOVIL.png)
 
 #### Carrito de Compras
-![Carrito de Compras](ruta/a/tu/captura-carrito.png)
+![Carrito de Compras](./img/CARRITO_COMPRAS.png)
 
 ---
 
