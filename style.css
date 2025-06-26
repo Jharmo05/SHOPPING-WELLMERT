@@ -1,0 +1,244 @@
+:root {
+    --walmart-blue: #0071ce;
+    --walmart-yellow: #ffc220;
+    --walmart-dark-blue: #004f9a;
+    --walmart-secondary-text: #555555;
+    --background-color: #f7f7f7;
+    --surface-color: #ffffff;
+    --text-color: #333;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    background-color: var(--walmart-blue);
+    color: white;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.walmart-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.walmart-logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.nav-button {
+    background: none;
+    border: 2px solid transparent;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-button:hover {
+    background-color: var(--walmart-dark-blue);
+}
+
+.search-container {
+    flex-grow: 1;
+    display: flex;
+    max-width: 600px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px 0 0 25px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+#search-input:focus {
+    outline: none;
+}
+
+.search-button {
+    background-color: var(--walmart-yellow);
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+}
+
+.search-button svg path {
+    stroke: var(--walmart-dark-blue);
+}
+
+.nav-icon-button {
+    background: none;
+    border: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    gap: 2px;
+}
+
+.filters-bar {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+    justify-content: flex-start;
+}
+
+.filters-bar select {
+    background-color: var(--walmart-dark-blue);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.main-content {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.product-card__image {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    padding: 20px;
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-card__info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-card__title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    color: var(--secondary-text);
+}
+
+.product-card__price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.product-card__button {
+    background-color: var(--walmart-blue);
+    color: white;
+    border: 2px solid var(--walmart-blue);
+    padding: 10px;
+    width: 100%;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.product-card__button:hover {
+    background-color: var(--walmart-dark-blue);
+    border-color: var(--walmart-dark-blue);
+}
+
+.cart-sidebar {
+    background-color: var(--surface-color);
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    z-index: 1100;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.is-visible {
+    transform: translateX(0);
+}
