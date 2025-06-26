@@ -32,4 +32,34 @@
                     <span>Carrito</span>
                 </button>
             </div>
+        </div>       
+        <div class="filters-bar container">
+            <select id="category-filter">
+                <option value="all">Todas las categorías</option>
+            </select>
+            <select id="sort-order">
+                <option value="default">Ordenar por</option>
+                <option value="price-asc">Precio: Menor a Mayor</option>
+                <option value="price-desc">Precio: Mayor a Menor</option>
+                <option value="name-asc">Nombre: A-Z</option>
+                <option value="name-desc">Nombre: Z-A</option>
+            </select>
         </div>
+    </header>
+    <main class="container main-content">
+        <section id="products-grid" class="products-grid"></section>
+        
+        <aside id="cart-sidebar" class="cart-sidebar">
+            <h2>Carrito de Compras <button id="close-cart-btn">&times;</button></h2>
+            <div id="cart-items" class="cart-items">
+            </div>
+            <div class="cart-total">
+                <h3>Total: <span id="cart-total-price">$0.00</span></h3>
+                <button id="clear-cart-button">Vaciar Carrito</button>
+            </div>
+        </aside>
+    </main>
+    
+    <script src="./main.js"></script>
+</body>
+</html>
