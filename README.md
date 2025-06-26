@@ -65,6 +65,25 @@ El repositorio está organizado de la siguiente manera para mantener una separac
 |                   # del DOM, gestión del carrito, filtros y persistencia de datos.
 |-- README.md       # La documentación que estás leyendo.
 
+```markdown
+## 🔧 Tecnologías Utilizadas
+
+Este proyecto fue construido utilizando tecnologías web estándar del lado del cliente, sin depender de frameworks o librerías externas para la lógica principal.
+
+* **HTML5:** Para la estructura semántica del contenido.
+* **CSS3:** Para el diseño y la estilización visual.
+    * **Flexbox y Grid Layout:** Para la maquetación de componentes y la cuadrícula de productos.
+    * **Variables CSS (Custom Properties):** Para un manejo de temas y colores más mantenible y consistente.
+    * **Media Queries:** Para lograr un diseño completamente responsivo.
+* **JavaScript (ES6+):** Para toda la interactividad y lógica de la aplicación.
+    * **Fetch API:** Para realizar las peticiones a la FakeStore API de forma asíncrona.
+    * **Async/Await:** Para manejar las promesas de una manera más limpia y legible.
+    * **LocalStorage API:** Para la persistencia de los datos del carrito de compras en el navegador.
+* **APIs y Herramientas Externas:**
+    * **FakeStore API:** Como fuente de datos de los productos.
+    * **Google Fonts:** Para la tipografía 'Roboto'.
+    * **Canva:** Para la creación de los wireframes y el diseño inicial.
+
 ### 📊 Estructura de Datos
 
 La lógica de la aplicación se gestiona con dos estructuras de datos principales en JavaScript:
