@@ -26,7 +26,6 @@ Para ejecutar este proyecto en tu máquina local, sigue estos sencillos pasos:
 
 ## 📸 Capturas de Pantalla
 
-*(Aquí puedes agregar tus capturas de pantalla. Sube las imágenes a tu repositorio y enlaza a ellas)*
 
 #### Vista de Escritorio
 ![Vista de Escritorio](./img/ESCRITORIO_PAGINA.png)
