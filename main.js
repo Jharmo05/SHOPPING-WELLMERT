@@ -151,6 +151,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const incrementarCantidad = (idProducto) => {
+        if (carrito[idProducto]) {
+            carrito[idProducto].quantity++;
+            actualizarCarrito();
+        }
+    };
+
+    const decrementarCantidad = (idProducto) => {
+        if (carrito[idProducto]) {
+            carrito[idProducto].quantity--;
+            if (carrito[idProducto].quantity <= 0) {
+                delete carrito[idProducto];
+            }
+            actualizarCarrito();
+        }
+    };
+
     const vaciarCarrito = () => {
         carrito = {};
         actualizarCarrito();
@@ -192,9 +209,31 @@ document.addEventListener('DOMContentLoaded', () => {
             titulo.textContent = item.title;
             infoItem.appendChild(titulo);
 
-            const cantidadPrecio = document.createElement('p');
-            cantidadPrecio.textContent = `Cant: ${item.quantity} x $${item.price.toFixed(2)}`;
-            infoItem.appendChild(cantidadPrecio);
+            const controlCantidad = document.createElement('div');
+            controlCantidad.className = 'quantity-control';
+
+            const botonMenos = document.createElement('button');
+            botonMenos.textContent = '-';
+            botonMenos.className = 'quantity-btn decrement';
+            botonMenos.dataset.id = item.id;
+            controlCantidad.appendChild(botonMenos);
+
+            const cantidadSpan = document.createElement('span');
+            cantidadSpan.textContent = item.quantity;
+            cantidadSpan.className = 'item-quantity';
+            controlCantidad.appendChild(cantidadSpan);
+
+            const botonMas = document.createElement('button');
+            botonMas.textContent = '+';
+            botonMas.className = 'quantity-btn increment';
+            botonMas.dataset.id = item.id;
+            controlCantidad.appendChild(botonMas);
+
+            infoItem.appendChild(controlCantidad);
+
+            const precioUnitario = document.createElement('p');
+            precioUnitario.textContent = `$${item.price.toFixed(2)} c/u`;
+            infoItem.appendChild(precioUnitario);
 
             itemCarrito.appendChild(infoItem);
 
@@ -245,9 +284,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     contenedorItemsCarrito.addEventListener('click', (e) => {
+        const id = Number(e.target.dataset.id);
         if (e.target.matches('.remove-from-cart')) {
-            const id = Number(e.target.dataset.id);
             eliminarDelCarrito(id);
+        } else if (e.target.matches('.quantity-btn.increment')) {
+            incrementarCantidad(id);
+        } else if (e.target.matches('.quantity-btn.decrement')) {
+            decrementarCantidad(id);
         }
     });
 
