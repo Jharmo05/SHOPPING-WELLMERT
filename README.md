@@ -58,14 +58,14 @@ El diseño inicial y los wireframes de la interfaz se realizaron en **Canva** pa
 
 El repositorio está organizado de la siguiente manera para mantener una separación clara de responsabilidades:
 
-´´´
+```
 /
 |-- 📄 index.html    # Contiene la estructura principal y el esqueleto de la página web (DOM).
 |-- 🎨 style.css     # Define todos los estilos, el diseño responsivo y la apariencia visual.
 |-- ⚙️ main.js       # Contiene toda la lógica de la aplicación: consumo de API, manipulación
 |                   # del DOM, gestión del carrito, filtros y persistencia de datos.
 |-- README.md       # La documentación que estás leyendo.
-´´´
+```
 
 ## 🔧 Tecnologías Utilizadas
 
