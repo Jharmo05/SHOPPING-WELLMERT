@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const botonCarrito = document.querySelector('.cart-button');
     const barraLateralCarrito = document.getElementById('cart-sidebar');
     const botonCerrarCarrito = document.getElementById('close-cart-btn');
+    const contadorItemsCarritoHeader = document.getElementById('cart-item-count');
+    const totalPrecioCarritoHeader = document.getElementById('cart-total-header');
 
     let todosLosProductos = [];
     let carrito = {};
@@ -36,28 +38,51 @@ document.addEventListener('DOMContentLoaded', () => {
             renderizarProductos();
         } catch (error) {
             console.error("Error al obtener los productos:", error);
-            cuadriculaProductos.innerHTML = `<p>No se pudieron cargar los productos. Intenta recargar la página.</p>`;
+            const mensajeError = document.createElement('p');
+            mensajeError.textContent = 'No se pudieron cargar los productos. Intenta recargar la página.';
+            cuadriculaProductos.appendChild(mensajeError);
         }
     };
 
     const renderizarProductos = (productos = todosLosProductos) => {
-        cuadriculaProductos.innerHTML = '';
+        cuadriculaProductos.replaceChildren();
         if (productos.length === 0) {
-            cuadriculaProductos.innerHTML = '<p>No se encontraron productos que coincidan con tu búsqueda.</p>';
+            const mensajeNoEncontrado = document.createElement('p');
+            mensajeNoEncontrado.textContent = 'No se encontraron productos que coincidan con tu búsqueda.';
+            cuadriculaProductos.appendChild(mensajeNoEncontrado);
             return;
         }
 
         productos.forEach(producto => {
             const tarjetaProducto = document.createElement('div');
             tarjetaProducto.className = 'product-card';
-            tarjetaProducto.innerHTML = `
-                <img src="${producto.image}" alt="${producto.title}" class="product-card__image">
-                <div class="product-card__info">
-                    <h3 class="product-card__title">${producto.title}</h3>
-                    <p class="product-card__price">$${producto.price.toFixed(2)}</p>
-                    <button class="product-card__button" data-id="${producto.id}">Agregar al carrito</button>
-                </div>
-            `;
+
+            const imagen = document.createElement('img');
+            imagen.src = producto.image;
+            imagen.alt = producto.title;
+            imagen.className = 'product-card__image';
+            tarjetaProducto.appendChild(imagen);
+
+            const infoProducto = document.createElement('div');
+            infoProducto.className = 'product-card__info';
+
+            const titulo = document.createElement('h3');
+            titulo.className = 'product-card__title';
+            titulo.textContent = producto.title;
+            infoProducto.appendChild(titulo);
+
+            const precio = document.createElement('p');
+            precio.className = 'product-card__price';
+            precio.textContent = `$${producto.price.toFixed(2)}`;
+            infoProducto.appendChild(precio);
+
+            const botonAgregar = document.createElement('button');
+            botonAgregar.className = 'product-card__button';
+            botonAgregar.dataset.id = producto.id;
+            botonAgregar.textContent = 'Agregar al carrito';
+            infoProducto.appendChild(botonAgregar);
+
+            tarjetaProducto.appendChild(infoProducto);
             cuadriculaProductos.appendChild(tarjetaProducto);
         });
     };
@@ -135,28 +160,54 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarItemsCarrito();
         calcularTotalCarrito();
         guardarCarrito();
+        const totalItems = Object.values(carrito).reduce((acc, item) => acc + item.quantity, 0);
+        contadorItemsCarritoHeader.textContent = totalItems;
+        
+        const totalAmount = Object.values(carrito).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        totalPrecioCarritoHeader.textContent = `$${totalAmount.toFixed(2)}`;
     };
     
     const renderizarItemsCarrito = () => {
-        contenedorItemsCarrito.innerHTML = '';
+        contenedorItemsCarrito.replaceChildren();
         if (Object.keys(carrito).length === 0) {
-            contenedorItemsCarrito.innerHTML = '<p>El carrito está vacío.</p>';
+            const mensajeVacio = document.createElement('p');
+            mensajeVacio.textContent = 'El carrito está vacío.';
+            contenedorItemsCarrito.appendChild(mensajeVacio);
             return;
         }
 
         Object.values(carrito).forEach(item => {
             const itemCarrito = document.createElement('div');
             itemCarrito.className = 'cart-item';
-            itemCarrito.innerHTML = `
-                <img src="${item.image}" alt="${item.title}">
-                <div class="cart-item-info">
-                    <p>${item.title}</p>
-                    <p>Cant: ${item.quantity} x $${item.price.toFixed(2)}</p>
-                </div>
-                <div class="cart-item-actions">
-                    <button class="remove-from-cart" data-id="${item.id}">&times;</button>
-                </div>
-            `;
+
+            const imagen = document.createElement('img');
+            imagen.src = item.image;
+            imagen.alt = item.title;
+            itemCarrito.appendChild(imagen);
+
+            const infoItem = document.createElement('div');
+            infoItem.className = 'cart-item-info';
+
+            const titulo = document.createElement('p');
+            titulo.textContent = item.title;
+            infoItem.appendChild(titulo);
+
+            const cantidadPrecio = document.createElement('p');
+            cantidadPrecio.textContent = `Cant: ${item.quantity} x $${item.price.toFixed(2)}`;
+            infoItem.appendChild(cantidadPrecio);
+
+            itemCarrito.appendChild(infoItem);
+
+            const accionesItem = document.createElement('div');
+            accionesItem.className = 'cart-item-actions';
+
+            const botonEliminar = document.createElement('button');
+            botonEliminar.className = 'remove-from-cart';
+            botonEliminar.dataset.id = item.id;
+            botonEliminar.textContent = '×';
+            accionesItem.appendChild(botonEliminar);
+
+            itemCarrito.appendChild(accionesItem);
             contenedorItemsCarrito.appendChild(itemCarrito);
         });
     };
