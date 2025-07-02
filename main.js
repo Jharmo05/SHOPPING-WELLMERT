@@ -82,6 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
             botonAgregar.textContent = 'Agregar al carrito';
             infoProducto.appendChild(botonAgregar);
 
+            const favoritos = document.createElement('favoritos');
+            favoritos.className = 'product-card__favoritos';
+            favoritos.dataset.id = producto.id;
+            favoritos.textContent = 'Añadir a favoritos';
+            infoProducto.appendChild(favoritos);
+
             tarjetaProducto.appendChild(infoProducto);
             cuadriculaProductos.appendChild(tarjetaProducto);
         });
