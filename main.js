@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let todosLosProductos = [];
     let carrito = {};
+    let favoritos = {};
 
     const API_URL = 'https://fakestoreapi.com/products';
 
@@ -92,6 +93,34 @@ document.addEventListener('DOMContentLoaded', () => {
             cuadriculaProductos.appendChild(tarjetaProducto);
         });
     };
+
+    cuadriculaProductos.addEventListener('click', (e) => {
+        if (e.target.matches('.product-card__favoritos')) {
+            const id = Number(e.target.dataset.id);
+            agregarFavoritos(id);
+        }
+    });
+
+    const agregarFavoritos = (idProducto) => {
+        if (carrito[idProducto]) {
+            carrito[idProducto].quantity++;
+        } else {
+            const producto = todosLosProductos.find(p => p.id === idProducto);
+            if(producto) {
+                carrito[idProducto] = { ...producto, quantity: 1 };
+            }
+        }
+        actualizarFavorito();
+    };
+
+    const actualizarFavorito = () => {
+        renderizarItemsCarrito();
+        guardarCarrito();
+        const totalItems = Object.values(carrito).reduce((acc, item) => acc + item.quantity, 0);
+        contadorItemsCarritoHeader.textContent = totalItems;
+    };
+
+
     
     const poblarFiltroCategoria = () => {
         const categorias = [...new Set(todosLosProductos.map(p => p.category))];
@@ -288,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
             agregarAlCarrito(id);
         }
     });
+
 
     contenedorItemsCarrito.addEventListener('click', (e) => {
         const id = Number(e.target.dataset.id);
