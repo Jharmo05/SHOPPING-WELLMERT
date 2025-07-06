@@ -5,7 +5,7 @@ Este proyecto es una aplicación web de comercio electrónico desarrollada con H
 ## 🚀 Demo en Vivo
 
 Puedes ver el proyecto en acción aquí:
-**[https://jharmo05.github.io/SHOPPING-WELMERT/](https://jharmo05.github.io/SHOPPING-WELMERT/)**
+**[https://jharmo05.github.io/SHOPPING-WELMERT/](https://jharmo05.github.io/SHOPPING-WELLMERT/)**
 
 ## 📋 Instrucciones para Ejecutar
 
