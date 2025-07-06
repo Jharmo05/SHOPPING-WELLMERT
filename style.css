@@ -1,8 +1,8 @@
 :root {
-    --walmart-blue: #0071ce;
-    --walmart-yellow: #ffc220;
-    --walmart-dark-blue: #004f9a;
-    --walmart-secondary-text: #555555;
+    --wellmert-blue: #0071ce;
+    --wellmert-yellow: #ffc220;
+    --wellmert-dark-blue: #004f9a;
+    --wellmert-secondary-text: #555555;
     --background-color: #f7f7f7;
     --surface-color: #ffffff;
     --text-color: #333;
@@ -31,7 +31,7 @@ body {
 }
 
 .header {
-    background-color: var(--walmart-blue);
+    background-color: var(--wellmert-blue);
     color: white;
     padding: 10px 0;
     position: sticky;
@@ -54,7 +54,7 @@ body {
     flex-shrink: 0;
 }
 
-.walmart-logo {
+.wellmert-logo {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -62,7 +62,7 @@ body {
     color: white;
 }
 
-.walmart-logo h1 {
+.wellmert-logo h1 {
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
@@ -84,7 +84,7 @@ body {
 }
 
 .nav-button:hover {
-    background-color: var(--walmart-dark-blue);
+    background-color: var(--wellmert-dark-blue);
 }
 
 .search-container {
@@ -107,7 +107,7 @@ body {
 }
 
 .search-button {
-    background-color: var(--walmart-yellow);
+    background-color: var(--wellmert-yellow);
     border: none;
     padding: 0 20px;
     border-radius: 0 25px 25px 0;
@@ -115,7 +115,7 @@ body {
 }
 
 .search-button svg path {
-    stroke: var(--walmart-dark-blue);
+    stroke: var(--wellmert-dark-blue);
 }
 
 .nav-icon-button {
@@ -139,7 +139,7 @@ body {
 }
 
 .filters-bar select {
-    background-color: var(--walmart-dark-blue);
+    background-color: var(--wellmert-dark-blue);
     color: white;
     padding: 8px 12px;
     border: none;
@@ -167,6 +167,7 @@ body {
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
 }
 
 .product-card:hover {
@@ -195,7 +196,7 @@ body {
     font-weight: 400;
     margin-bottom: 15px;
     flex-grow: 1;
-    color: var(--walmart-secondary-text);
+    color: var(--wellmert-secondary-text);
 }
 
 .product-card__price {
@@ -206,9 +207,9 @@ body {
 }
 
 .product-card__button {
-    background-color: var(--walmart-blue);
+    background-color: var(--wellmert-blue);
     color: white;
-    border: 2px solid var(--walmart-blue);
+    border: 2px solid var(--wellmert-blue);
     padding: 10px;
     width: 100%;
     border-radius: 25px;
@@ -218,29 +219,35 @@ body {
 }
 
 .product-card__button:hover {
-    background-color: var(--walmart-dark-blue);
-    border-color: var(--walmart-dark-blue);
+    background-color: var(--wellmert-dark-blue);
+    border-color: var(--wellmert-dark-blue);
 }
 
-.product-card__favoritos {
-    background-color: var(--walmart-blue);
-    color: white;
-    border: 2px solid var(--walmart-blue);
-    padding: 10px;
-    width: 10rem;
-    height: 1rem%;
-    border-radius: 25px;
+.add-to-favorites-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
     cursor: pointer;
-    font-weight: 700;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 5px;
+    z-index: 10;
 }
 
-.product-card__favoritos:hover {
-    background-color: var(--walmart-dark-blue);
-    border-color: var(--walmart-dark-blue);
+.add-to-favorites-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: #ccc; 
+    stroke: #888;
+    transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
-.cart-sidebar {
+.add-to-favorites-btn.favorited svg {
+    fill: #ff0000;
+    stroke: #ff0000;
+}
+
+.cart-sidebar, .favorites-sidebar {
     background-color: var(--surface-color);
     padding: 20px;
     position: fixed;
@@ -257,12 +264,12 @@ body {
     flex-direction: column;
 }
 
-.cart-sidebar.is-visible {
+.cart-sidebar.is-visible, .favorites-sidebar.is-visible {
     transform: translateX(0);
 }
 
 
-.cart-sidebar h2 {
+.cart-sidebar h2, .favorites-sidebar h2 {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 15px;
     margin-bottom: 20px;
@@ -272,23 +279,23 @@ body {
     align-items: center;
 }
 
-#close-cart-btn {
+#close-cart-btn, #close-favorites-btn {
     background: none;
     border: none;
     font-size: 2.5rem;
     cursor: pointer;
-    color: var(--walmart-secondary-text);
+    color: var(--wellmert-secondary-text);
     padding: 0;
     line-height: 1;
 }
 
-.cart-items {
+.cart-items, .favorites-items {
     flex-grow: 1;
     overflow-y: auto;
     margin-bottom: 20px;
 }
 
-.cart-item {
+.cart-item, .favorite-item {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
@@ -296,7 +303,7 @@ body {
     border-bottom: 1px solid #f0f0f0;
 }
 
-.cart-item img {
+.cart-item img, .favorite-item img {
     width: 60px;
     height: 60px;
     object-fit: contain;
@@ -305,33 +312,39 @@ body {
     border-radius: 4px;
 }
 
-.cart-item-info {
+.cart-item-info, .favorite-item-info {
     flex-grow: 1;
     font-size: 0.9rem;
 }
 
-.cart-item-info p {
+.cart-item-info p, .favorite-item-info p {
     margin: 0;
 }
 
-.cart-item-info p:first-child {
+.cart-item-info p:first-child, .favorite-item-info p:first-child {
     font-weight: 600;
 }
 
-.cart-item-actions button {
+.cart-item-actions, .favorite-item-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.cart-item-actions button, .favorite-item-actions button {
     background: none;
     border: none;
-    color: var(--walmart-secondary-text);
+    color: var(--wellmert-secondary-text);
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-.cart-item-actions button:hover {
+.cart-item-actions button:hover, .favorite-item-actions button:hover {
     color: #e74c3c;
 }
 
-.cart-total {
+.cart-total, .favorites-actions {
     border-top: 2px solid var(--border-color);
     padding-top: 20px;
     text-align: right;
@@ -343,10 +356,10 @@ body {
     margin-bottom: 15px;
 }
 
-#clear-cart-button {
+#clear-cart-button, #clear-favorites-button {
     background-color: transparent;
-    color: var(--walmart-blue);
-    border: 2px solid var(--walmart-blue);
+    color: var(--wellmert-blue);
+    border: 2px solid var(--wellmert-blue);
     padding: 10px 20px;
     border-radius: 25px;
     cursor: pointer;
@@ -354,8 +367,8 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#clear-cart-button:hover {
-    background-color: var(--walmart-blue);
+#clear-cart-button:hover, #clear-favorites-button:hover {
+    background-color: var(--wellmert-blue);
     color: white;
 }
 
@@ -377,7 +390,7 @@ body {
     visibility: visible;
 }
 
-.walmart-img {
+.wellmert-img {
     width: 40px;
 }
 
@@ -389,7 +402,7 @@ body {
 }
 
 .quantity-control .quantity-btn {
-    background-color: var(--walmart-blue);
+    background-color: var(--wellmert-blue);
     color: white;
     border: none;
     width: 25px;
@@ -405,7 +418,7 @@ body {
 }
 
 .quantity-control .quantity-btn:hover {
-    background-color: var(--walmart-dark-blue);
+    background-color: var(--wellmert-dark-blue);
 }
 
 .quantity-control .item-quantity {
@@ -445,7 +458,7 @@ body {
         justify-content: center;
         flex-wrap: wrap;
     }
-    .walmart-logo h1 {
+    .wellmert-logo h1 {
         display: none;
     }
     .nav-icon-button { 
